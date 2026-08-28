@@ -34,16 +34,25 @@ def is_palindrome(s):
     Returns:
         bool: 회문이면 True, 아니면 False
     """
+   
+
     # TODO: 알파벳과 숫자만 남기고 소문자로 변환하세요
     # 힌트: isalnum() 메서드와 lower() 메서드 사용
-    pass
-    
+    no_special = ""
+
+    for x in s:
+        if(x.isalnum()):
+            no_special += x.lower()
+
     # TODO: 정제된 문자열이 회문인지 확인하세요
     # 방법1: 문자열을 뒤집어서 비교 ([::-1] 사용)
     # 방법2: 양 끝 인덱스를 이용한 투 포인터 방식
-    pass
-    
-    #return False
+    for i in no_special:
+        if(no_special != no_special[::-1]):
+            return False
+
+    return True
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -53,7 +62,7 @@ if __name__ == "__main__":
     print(f"입력: \"{test1}\"")
     print(f"회문 여부: {result1}")
     print()
-    
+
     # 테스트 케이스 2
     test2 = "race a car"
     result2 = is_palindrome(test2)
