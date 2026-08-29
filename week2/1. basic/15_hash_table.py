@@ -8,7 +8,7 @@
 
 문제 설명:
 - 해시 테이블(딕셔너리)을 사용하여 학생 성적을 관리합니다.
-- Key-Value 쌍으로 빠른 검색, 삽입, 삭제가 가능합니다.
+- Key-Value 쌍 삭제가 가능으로 빠른 검색, 삽입,합니다.
 
 입력:
 - 학생 이름과 점수
@@ -41,11 +41,20 @@ def manage_grades(students):
         평균, 최고점 학생 이름, 최고점
     """
     # TODO: 평균 점수 계산
-    pass
-    
-    
-    # TODO: 최고 점수 학생 찾기
-    pass
+    cnt = 0
+    average = 0
+    top_score = 0
+
+    top_student = ""
+
+    for key, value in students.items():
+        average += value
+        cnt += 1
+        if top_score < value:
+            top_score = value
+            top_student = key
+        
+    average /= cnt
     
     return average, top_student, top_score
 
@@ -61,7 +70,8 @@ def find_student_score(students, name):
         점수 (없으면 None)
     """
     # TODO: students에서 name 찾기
-    pass
+    score = students.get(name)
+    return score
 
 # 테스트 케이스
 if __name__ == "__main__":
