@@ -22,54 +22,74 @@
 - 피보나치: fib(n) = fib(n-1) + fib(n-2), fib(0) = 0, fib(1) = 1
 """
 
-def factorial(n):
-    """
-    재귀를 사용한 팩토리얼 계산
+# # 일반 재귀
+# def factorial(n):
+#     """
+#     재귀를 사용한 팩토리얼 계산
     
-    Args:
-        n: 양의 정수
+#     Args:
+#         n: 양의 정수
     
-    Returns:
-        n의 팩토리얼 값
-    """
-    # TODO: base case를 작성하세요
-    # n이 0이거나 1이면 1을 반환
+#     Returns:
+#         n의 팩토리얼 값
+#     """
+#     # TODO: base case를 작성하세요
+#     # n이 0이거나 1이면 1을 반환
     
-    if n == 0 or n == 1:
-        return 1
+#     if n == 0 or n == 1:
+#         return 1
 
-    # TODO: recursive case를 작성하세요
+#     # TODO: recursive case를 작성하세요
     
-    return n * factorial(n-1)
+#     return n * factorial(n-1)
 
-def fibonacci(n):
-    """
-    재귀를 사용한 피보나치 수 계산
+# 꼬리재귀
+def factorial(n, total = 1):
+    if n==1 or n == 0:
+        return total
+    else:
+        return factorial(n-1, n*total)
+
+
+#일반재귀 피보나치
+# def fibonacci(n):
+#     """
+#     재귀를 사용한 피보나치 수 계산
     
-    Args:
-        n: 구하고자 하는 피보나치 수의 인덱스
+#     Args:
+#         n: 구하고자 하는 피보나치 수의 인덱스
     
-    Returns:
-        n번째 피보나치 수
-    """
-    # TODO: base case를 작성하세요
-    # n이 0이면 0, n이 1이면 1 반환
+#     Returns:
+#         n번째 피보나치 수
+#     """
+#     # TODO: base case를 작성하세요
+#     # n이 0이면 0, n이 1이면 1 반환
+#     if n==0:
+#         return 0
+
+#     if n==1:
+#         return 1
+
+#     # TODO: recursive case를 작성하세요
+#     return fibonacci(n-1) + fibonacci(n-2)
+
+# 꼬리재귀 피보나치
+def fibonacci(n, sum = 0, k = 1):
     if n==0:
-        return 0
-
-    if n==1:
-        return 1
-
-    # TODO: recursive case를 작성하세요
-    return fibonacci(n-1) + fibonacci(n-2)
+        return sum
+    else:
+        return fibonacci(n-1, k, sum + k)
 
 # 테스트 케이스
 if __name__ == "__main__":
     # 팩토리얼 테스트
     print("=== 팩토리얼 계산 ===")
-    for i in range(6):
-        result = factorial(i)
-        print(f"{i}! = {result}")
+    # for i in range(6):
+    #     result = factorial(i)
+    #     print(f"{i}! = {result}")
+    for x in range(6):
+        result = factorial(x)
+        print(f"{x}! = {result}")
     print()
     
     # 피보나치 테스트
