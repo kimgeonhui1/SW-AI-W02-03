@@ -68,7 +68,48 @@ def n_queens(n: int) -> int:
     #       ...
     #   place(0)
     #   return count
-    pass
+
+    # 체스판만들기, count 정의
+    cols = [0] * n
+    count = 0
+
+    # place(cols)함수 정의
+    def place(row):
+        nonlocal count
+
+        # 성공 시 return
+        if row == n:
+            count += 1
+            return
+
+        # 실패 사례 정의
+        def is_ok(row):
+
+            for i in range(row):
+
+                # 같은 행/열일때 False
+                if cols[row] == cols[i]:
+                    return False
+
+                # 대각선일때 False
+                elif abs(cols[row] - cols[i]) == abs(row - i):
+                    return False
+
+            return True
+
+            # cols[0]에 퀸이 있을 경우 ~ cols[n]에 퀸이 있을 경우
+
+        for x in range(n):
+            # 체스판에 값 넣어주기
+            # cols[0] = 0 ~ cols[n] = n
+            cols[row] = x
+
+            # 문제가 없을 경우 다음 행으로 이동
+            if is_ok(row):
+                place(row + 1)
+
+    place(0)
+    return count
 
 
 if __name__ == "__main__":
