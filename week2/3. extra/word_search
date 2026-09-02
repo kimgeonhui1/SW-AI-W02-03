@@ -1,0 +1,36 @@
+class Solution():
+    def exist(self, board, word):
+        """
+        :type board: List[List[str]]
+        :type word: str
+        :rtype: bool
+        """
+
+    # board : 표
+    # word : 찾을 문자열
+
+        def dfs(r,c,k):
+            if ( r <0 or r>=len(board) or c<0 or c >=len(board[0]) or board[r][c] != word[k]):
+                return False
+            else:
+                if k==len(word) -1:
+                    return True
+                temp = board[r][c]
+                board[r][c] = "#"
+                found = (dfs(r-1,c,k+1) or dfs(r+1, c, k+1) or dfs(r,c-1, k+1) or dfs(r,c+1,k+1))
+                board[r][c] = temp
+                return found
+
+        # 3중 for문으로 word에 들어간 값 좌표 찾기
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                if board[i][j] == word[0]:
+                    if dfs(i,j,0):
+                        return True
+        return False
+                
+
+test = Solution()
+
+print(test.exist( board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"))
+
